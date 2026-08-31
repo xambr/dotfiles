@@ -133,9 +133,6 @@ export HELM_DRIVER=configmap
 export PATH="/opt/homebrew/share/google-cloud-sdk/bin:$PATH"
 export PATH="$PATH:$HOME/dd/devtools/bin/:/opt/dogbrew/bin"
 
-# Added by Yarn Switch
-source "/Users/maxim.briskin/.yarn/switch/env"
-
 export DATADOG_ROOT="/Users/maxim.briskin/dd"
 
 gw() {
@@ -181,5 +178,5 @@ if [ -f "$HOME/.zshrc_local" ]; then
     source "$HOME/.zshrc_local"
 fi
 
-eval "$(/opt/dogbrew/bin/dogbrew init zsh)"
+
 alias dotfiles='/usr/bin/git --git-dir=/Users/maxim.briskin/.dotfiles --work-tree=/Users/maxim.briskin'
