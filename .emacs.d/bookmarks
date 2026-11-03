@@ -1,0 +1,23 @@
+;;;; Emacs Bookmark Format Version 1;;;; -*- coding: utf-8-emacs; mode: lisp-data -*-
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("py"
+ (filename . "~/dd/dd-source/python-search-client-test.py")
+ (front-context-string . "ch(\n            ")
+ (rear-context-string . "se = client.sear")
+ (position . 1600)
+ (last-modified 26764 10941 409920 0))
+("go"
+ (filename . "~/dd/dd-source/domains/mars/hubble/apps/elasticsearch-availability/indicators/search_client_indicators.go")
+ (front-context-string . " doing a search ")
+ (rear-context-string . "y translation by")
+ (position . 6178)
+ (last-modified 26764 7948 377730 0))
+("FED"
+ (filename . "~/go/src/github.com/DataDog/dd-source/domains/eee/apps/sdp/temporal/workers/foundationdb/pkg/atlas/routing.go")
+ (front-context-string . "(ctx, target, wf")
+ (rear-context-string . "resolveTaskQueue")
+ (position . 1617)
+ (last-modified 26230 51174 579196 0))
+)

@@ -1,0 +1,7 @@
+;;; -*- lisp-data -*-
+(("/Users/maxim.briskin/.emacs.d/")
+ ("/Users/maxim.briskin/.emacs.d/elpa/claude-code-ide/")
+ ("/Users/maxim.briskin/dd/dd-source/")
+ ("/Users/maxim.briskin/go/src/github.com/DataDog/dd-source/")
+ ("/Users/maxim.briskin/dd/k8s-resources/")
+ ("/Users/maxim.briskin/dd/cloud-inventory/"))

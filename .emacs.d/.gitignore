@@ -1,0 +1,67 @@
+# Emacs Configuration .gitignore
+
+# Package installations (will be reinstalled automatically)
+elpa/
+straight/
+
+# Node modules and npm packages
+node_modules/
+package-lock.json
+libs/node_modules/
+libs/package-lock.json
+
+# Embedded git repositories (handle as submodules if needed)
+libs/copilot.el/
+libs/emacs-bazel-mode/
+libs/emacs-libvterm/
+libs/emacs-no-easy-keys/
+libs/gptel/
+
+# Cache and temporary files
+.cache/
+auto-save-list/
+.lsp-session-v1
+.dap-breakpoints
+recentf
+.emacs.desktop
+.emacs.desktop.lock
+
+# Eshell and shell history
+eshell/
+tramp
+
+# Transient state (regenerated)
+transient/
+
+# Network and request cache
+request/
+url/
+
+# Backups and temporary files
+*~
+\#*\#
+*.elc
+.#*
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Personal/sensitive files (uncomment if needed)
+# bookmarks
+# projects
+
+# Logs
+*.log
+
+# Auto-generated files
+loaddefs.el*
+*-autoloads.el
+custom.el
+
+# Session files
+session.*
+.session
+
+# Quelpa builds
+quelpa/ 
