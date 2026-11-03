@@ -5,9 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Ensure homebrew is in PATH for non-login shells
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -77,9 +74,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-ZSH_AUTOSUGGEST_STRATEGY=(history)
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242,underline'
-
 plugins=(git golang terraform kubectl helm aws colored-man-pages history macos sudo zsh-autosuggestions zsh-syntax-highlighting)
 
 # User configuration
@@ -112,6 +106,18 @@ plugins=(git golang terraform kubectl helm aws colored-man-pages history macos s
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source $ZSH/oh-my-zsh.sh
 
+# dedupe PATH/fpath (many entries appended across profile files)
+typeset -U path fpath
+
+# editor
+export EDITOR='vim'
+export VISUAL='vim'
+
+# history hardening
+HISTSIZE=100000
+SAVEHIST=100000
+setopt SHARE_HISTORY HIST_IGNORE_ALL_DUPS HIST_REDUCE_BLANKS HIST_IGNORE_SPACE
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -128,13 +134,6 @@ source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-se
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-export AWS_VAULT_BACKEND=file
-export HELM_DRIVER=configmap
-export PATH="/opt/homebrew/share/google-cloud-sdk/bin:$PATH"
-export PATH="$PATH:$HOME/dd/devtools/bin/:/opt/dogbrew/bin"
-
-export DATADOG_ROOT="/Users/maxim.briskin/dd"
-
 gw() {
   local selection
   local worktree
@@ -143,7 +142,14 @@ gw() {
   local -r gw_delete=~/.zsh_functions/gw-delete
   local -r gw_create=~/.zsh_functions/gw-create
 
-  selection=$("$gw_list" | \
+  local repo
+  if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+    repo=$(git rev-parse --show-toplevel)
+  else
+    repo="$HOME/go/src/github.com/DataDog/dd-source"
+  fi
+
+  selection=$(cd "$repo" && "$gw_list" | \
     fzf \
       --height=50% \
       --margin=1 \
@@ -180,3 +186,6 @@ fi
 
 
 alias dotfiles='/usr/bin/git --git-dir=/Users/maxim.briskin/.dotfiles --work-tree=/Users/maxim.briskin'
+
+# dogbrew shell-hooks: if you don't want this to be called, comment it out and dogbrew will honour that on subsequent updates.  See also the more dangerous `dogbrew self setup --disable-shell-hooks`.
+[ -f "/opt/dogbrew/share/etc/dogbrew/init.zsh" ] && . "/opt/dogbrew/share/etc/dogbrew/init.zsh"
