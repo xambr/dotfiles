@@ -1,0 +1,58 @@
+[pager]
+	branch = false
+	diff = false
+	log = false
+	show = false
+	status = false
+[core]
+	hooksPath = /usr/local/dd/global_hooks
+	excludesFile = ~/.gitignore
+[user]
+	email = maxim.briskin@datadoghq.com
+	name = Maxim Briskin
+[gpg]
+	format = ssh
+
+[commit]
+	gpgsign = true
+[alias]
+	lg = log --color -6 --graph --date=format:'%Y-%m-%d %H:%M:%S' --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'
+	co = checkout
+ 	st = status
+	br = branch
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[fetch]
+	prune = true
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
+[diff]
+	algorithm = histogram
+[merge]
+	conflictstyle = zdiff3
+[rerere]
+	enabled = true
+[branch]
+	sort = -committerdate
+[help]
+	autocorrect = prompt
+[push]
+	autoSetupRemote = true
+	default = current
+[init]
+	defaultBranch = main
+[maintenance]
+	repo = /Users/maxim.briskin/go/src/github.com/DataDog/dd-source
+[github]
+	user = xambr
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[include]
+	path = /Users/maxim.briskin/.config/datadog/git/config
+[datadog]
+	team = mars-data-replication
